@@ -15,3 +15,6 @@ CREATE TABLE posts (
         references users(id)
         on delete cascade
 );
+
+INSERT INTO users (email_address, username) VALUES ("johndo@example.com", "john_do");
+INSERT INTO users (email_address, username) VALUES ("jamiedo@example.com", "jamie_do");
