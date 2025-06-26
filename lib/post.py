@@ -1,4 +1,4 @@
-# Post class to handle post operations
+
 class Post:
     def __init__(self, id, title, content, views, user_id):
         self.id = id
