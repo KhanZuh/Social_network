@@ -1,84 +1,100 @@
-# Database Project Starter
+# Social Network Project
 
-This is a starter project for you to use to start your Python database projects.
+A simple social network application built with Python and PostgreSQL that allows users to create accounts, write posts, and track post engagement through view counts.
 
-There are two videos to support:
+## Features
 
-* [A demonstration of setting up the project](https://www.youtube.com/watch?v=KMEt4GgWJXc)
-* [A walkthrough of the project codebase](https://youtu.be/KMEt4GgWJXc?t=460)
+- **User Management**: Users can register with email addresses and usernames
+- **Post Creation**: Users can create posts with titles and content
+- **View Tracking**: Posts automatically track how many times they've been viewed
+- **Timeline**: Users can write posts associated with their accounts
 
-## Setup
+## User Stories
 
-### 1. Clone the repository to your local machine
-```
-; git clone git@github.com:makersacademy/databases-in-python-project-starter.git YOUR_PROJECT_NAME
-```
+This project implements the following user stories:
 
-> Or, if you don't have SSH keys set up
-```
-; git clone https://github.com/makersacademy/databases-in-python-project-starter.git YOUR_PROJECT_NAME
-```
+> As a social network user,  
+> So I can have my information registered,  
+> I'd like to have a user account with my email address.
 
-### 2. Enter the directory
-```
-; cd YOUR_PROJECT_NAME
-```
+> As a social network user,  
+> So I can have my information registered,  
+> I'd like to have a user account with my username.
 
-### 3. Set up the virtual environment
-```
-; python -m venv databases-starter-venv
-```
+> As a social network user,  
+> So I can write on my timeline,  
+> I'd like to create posts associated with my user account.
 
-### 4. Activate the virtual environment
-```
-; source databases-starter-venv/bin/activate 
-```
+> As a social network user,  
+> So I can write on my timeline,  
+> I'd like each of my posts to have a title and a content.
 
+> As a social network user,  
+> So I can know who reads my posts,  
+> I'd like each of my posts to have a number of views.
 
-### 5. Install dependencies
-```
-(databases-starter-venv); pip install -r requirements.txt
-```
+## Project Structure
+![Screenshot 2025-06-26 at 17 05 54](https://github.com/user-attachments/assets/3b94e2de-5096-4903-a95a-bdc0e5979fe8)
 
-> Read below if you see an error with `python_full_version`
+## Getting Started
 
-### 6. Create the database
-```
-(databases-starter-venv); createdb YOUR_PROJECT_NAME
-```
+### Prerequisites
 
-> `YOUR_PROJECT_NAME` can be anything you want it to be
+- Python 3.x
+- PostgreSQL
+- pytest (for running tests)
 
-### 7. Change `DATABASE_NAME` to equal `YOUR_PROJECT_NAME`
+### Installation
 
-On line 11 of `lib/database_connection.py` you'll find this...
+1. Clone the repository
+2. Set up your PostgreSQL database
+3. Install dependencies (if any)
+4. Run the seed file to populate test data
 
-```
-DATABASE_NAME = "DEFAULT_MAKERS_PROJECT" # <-- CHANGE THIS!
-```
+### Running the Application
 
-Change `DEFAULT_MAKERS_PROJECT` to whatever you chose for `YOUR_PROJECT_NAME`
+Run the main demo to see all features in action:
 
-### 8. Run the tests - see below if you have any issues
-```
-(databases-starter-venv); pytest
-```
-> If the tests fail, see below
-
-### 9. Run the app
-```
-(databases-starter-venv); python app.py
+```bash
+python app.py
 ```
 
-<br>
-<details>
-  <summary>I get a <code>ModuleNotFoundError: No module named 'psycopg'</code></summary>
-  <br>
-If, after activating your <code>venv</code> and installing dependencies, you see this error when running <code>pytest</code>, please deactivate and reactivate your <code>venv</code>. This should solve the problem - if not, contact your coach.
-</details>
-<br>
-<details>
-  <summary>The tests fails and I see <code>Exception: Couldn't connect to the database DEFAULT_MAKERS_PROJECT!</code></summary>
-  <br>
-This error most likely means you need to edit line 11 in <code>lib/database_connection.py</code>. Go there and change <code>"DEFAULT_MAKERS_PROJECT"</code> to the name of the database you created in step 6.
-</details>
+This will demonstrate:
+
+User account creation and management
+Post creation with titles and content
+View count tracking and incrementing
+
+## Running Tests
+```bash
+pytest
+```
+
+
+## Key Methods
+### PostRepository
+- all() - Get all posts
+- find(post_id) - Find a specific post by ID
+- find_by_user(user_id) - Get all posts by a specific user
+- create(post) - Create a new post
+- increment_views(post_id) - Increment the view count for a post
+
+### UserRepository
+- all() - Get all users
+- find(user_id) - Find a specific user by ID
+- create(user) - Create a new user account
+
+## Database Schema
+### Users Table
+- id (Primary Key)
+- username (String)
+- email (String)
+
+### Posts Table
+- id (Primary Key)
+- title (String)
+- content (Text)
+- views (Integer)
+- user_id (Foreign Key to Users)
+
+___Built as a learning project to understand database interactions, repository patterns, and social network fundamentals.___
